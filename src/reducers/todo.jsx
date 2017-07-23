@@ -1,23 +1,29 @@
-import {ADD, TOGGLE_TODO} from '../actions/action-type.jsx';
+import {createActions, handleActions, combineActions} from 'redux-actions';
+import defaultState from '../defaultState.jsx';
 
-const todoReducers = function (state = [], action) {
-    switch (action.type) {
-        case ADD:
-            return [
-                ...state,
-                {
-                    text   : action.text,
-                    id     : action.id,
-                    isClick: false
-                }
-            ];
-        case TOGGLE_TODO:
-            return state.map(function (item, index) {
-                return (item.id === action.id ) ? {...item, isClick: !item.isClick} : item;
-            });
-        default:
-            return state;
+
+const {increment, decrement} = createActions({
+    INCREMENT: (amount) => ({amount}),
+    DECREMENT: (amount) => ({amount: -amount})
+});
+
+//const reducer = handleActions({
+//    [combineActions(increment, decrement)](state, {payload: {amount}}) {
+//        return {...state, counter: state.counter + amount};
+//    }
+//}, defaultState);
+
+const reducer = handleActions({
+    [increment](state, { payload: { amount } }) {
+        return { counter: state.counter + amount }
+    },
+    [decrement](state, { payload: { amount } }) {
+        return { counter: state.counter + amount }
     }
-};
+}, defaultState);
 
-export default todoReducers;
+
+
+
+
+export default reducer;

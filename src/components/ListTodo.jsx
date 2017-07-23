@@ -5,6 +5,7 @@ import './listTodo.css'
 
 class ListTodo extends React.Component {
     constructor(props) {
+        console.log('list = ', props);
         super(props);
     }
 

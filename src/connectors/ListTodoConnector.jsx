@@ -3,7 +3,7 @@ import ListTodo from '../components/ListTodo.jsx';
 
 const mapStateToProps = (state) => {
     return {
-        data: state.listTodo
+        data: state
     }
 };
 
